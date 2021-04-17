@@ -1,27 +1,27 @@
 <form #filterForm = "ngForm" class = "formFiltros">
     <div class="numeroOrden"> 
             <label for= "inputNumero">#</label>
-            <input name= "numero" id = "numero"  type="number" value ="" (keyup)="borrarfiltros('numero',$event)" placeholder="Busca por el número de la orden"/>         
+            <input name= "numero" id = "numero"  type="number" value ="" (keyup)="generarFiltros('numero',$event)" placeholder="Busca por el número de la orden"/>         
     </div>
     <div class="otrosInput item2">
             <label for ="fechaInicial">Fecha inicial</label>
-            <input name= "fechaInicial" id= "fechaInicial" type="date" />
+            <input name= "fechaInicial" id= "fechaInicial" type="date" (change)="generarFiltros('fechaInicial',$event)" />
     </div>
     <div class="otrosInput item3">
             <label for ="fechaFinal">Fecha final</label>
-            <input name= "fechaFinal" id= "fechaFinal" type="date"/>
+            <input name= "fechaFinal" id= "fechaFinal" type="date" (change)="generarFiltros('fechaFinal',$event)"/>
     </div> 
 
     <div class="otrosInput item4">
-            <input name= "nit" id= "nit" type="number" placeholder="NIT" (keyup)="borrarfiltros('nit',$event)"/>
+            <input name= "nit" id= "nit" type="number" placeholder="NIT" (keyup)="generarFiltros('nit',$event)"/>
     </div>
 
     <div class="otrosInput item7">
-        <input name= "razonSocial" id= "RazonSocial" type="text" placeholder="Razón Social" (keyup)="borrarfiltros('razonSocial',$event)" />
+        <input name= "razonSocial" id= "RazonSocial" type="text" placeholder="Razón Social" (keyup)="generarFiltros('razonSocial',$event)" />
 </div>
 
     <div class="otrosInput item5">
-            <select name="estado" id="estado" (change)="borrarfiltros('estado',$event)">
+            <select name="estado" id="estado" (change)="generarFiltros('estado',$event)">
                    <option disabled selected>Estado</option>
                    <option value="">Todos</option>
                     <option value="Completo">Completo</option>

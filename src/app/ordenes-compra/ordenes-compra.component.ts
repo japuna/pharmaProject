@@ -25,7 +25,7 @@ export interface PeriodicElement {
   styleUrls: ['./ordenes-compra.component.sass']
 })
 export class OrdenesCompraComponent implements OnInit {
-  displayedColumns: string[] = ['numero', 'nit', 'razonSocial', 'fecha', 'observaciones', 'estado'];
+  displayedColumns: string[] = ['numero', 'nit', 'razonSocial', 'fecha', 'observaciones', 'estado', 'ruta'];
   dataSource = new MatTableDataSource();
   filterValues:{[index: string]:any} = {};
   filterSelectObj: any[] = [];
@@ -59,15 +59,15 @@ export class OrdenesCompraComponent implements OnInit {
   }
   getRemoteData() {
   const ELEMENT_DATA: PeriodicElement[] = [
-    {numero: 123, nit: '1423243433-2', razonSocial:"Alegrias SAS", fecha: "23/23/20", 
+    {numero: 123, nit: '1423243433-2', razonSocial:"Alegrias SAS", fecha: "02/23/20", 
     observaciones: "Esto es un ejemplo", estado: "Completo" },
-    {numero: 13, nit: '222434333', razonSocial:"Hola SAS", fecha: "24/23/19", 
+    {numero: 13, nit: '222434333', razonSocial:"Hola SAS", fecha: "02/23/19", 
     observaciones: "Another One", estado: "Pendiente" },
-    {numero: 33343, nit: '19232434333-1', razonSocial:"Comida SAS", fecha: "24/03/19", 
+    {numero: 33343, nit: '19232434333-1', razonSocial:"Comida SAS", fecha: "01/03/19", 
     observaciones: "Look This", estado: "Completo" },
-    {numero: 4131, nit: '1232434333-5', razonSocial:"La Cna SAS", fecha: "19/02/19", 
+    {numero: 4131, nit: '1232434333-5', razonSocial:"La Cna SAS", fecha: "12/02/19", 
     observaciones: "Muchis", estado: "Completo" },
-    {numero: 8122, nit: '993434333-6', razonSocial:"ASSS SAS", fecha: "20/03/21", 
+    {numero: 8122, nit: '993434333-6', razonSocial:"ASSS SAS", fecha: "11/03/21", 
     observaciones: "Otras compra", estado: "Pendiente" },
     {numero: 33432, nit: '12234333-6', razonSocial:"Camila SAS", fecha: "3/12/20", 
     observaciones: "Compra", estado: "Pendiente" }
@@ -80,12 +80,38 @@ export class OrdenesCompraComponent implements OnInit {
 }
   
   filtros(objeto: any){
-    console.log("entró");
     this.filterValues[objeto.columna] = objeto.valor.trim().toLowerCase()
     this.dataSource.filter = JSON.stringify(this.filterValues)
   }
 
   createFilter() {
+
+    let filtroFecha = (fechaOrden:any, valorFiltro:any, columna:any)=>{
+        let fecha1 = (new Date(fechaOrden));
+        console.log(fecha1);
+        let bandera = false;
+        let fecha2 = (new Date(valorFiltro))
+        console.log(valorFiltro);
+        console.log(fecha2);
+        if(columna=="fechaInicial"){
+          if(fecha1>=fecha2){
+            bandera = true;
+          }else{
+            
+          }
+
+        }else if(columna=="fechaFinal"){
+          if(fecha1<=fecha2){
+            bandera = true;
+          }else{
+           
+          }
+        
+        }
+      return bandera;
+      
+    }
+
     let filterFunction = function (data: any, filter: string): boolean {
       
       let searchTerms = JSON.parse(filter);
@@ -103,13 +129,22 @@ export class OrdenesCompraComponent implements OnInit {
         let posiciones = 0;
         if (isFilterSet) {
           for (const col in searchTerms) {
-            posiciones++
-            searchTerms[col].trim().toLowerCase().split(' ').forEach((word: any) => { 
-              if (data[col].toString().toLowerCase().indexOf(word) != -1 && isFilterSet) {
-                numero++;
-                
-              }
-            });
+            posiciones++;
+            if(col==="fechaInicial"|| col==="fechaFinal"){
+               if(filtroFecha(data["fecha"], searchTerms[col], col)){
+                 numero++;
+               }else{
+
+               }
+            } else{
+              
+              searchTerms[col].trim().toLowerCase().split(' ').forEach((word: any) => { 
+                if (data[col].toString().toLowerCase().indexOf(word) != -1 && isFilterSet) {
+                  numero++;
+                  
+                }
+              });
+            }
           }
           
           if(numero ==posiciones){
@@ -137,6 +172,12 @@ export class OrdenesCompraComponent implements OnInit {
     })
     this.dataSource.filter = "";
   }
+
+  abrirObjeto= (event:any)=>{
+    alert(event);
+  }
+  
+  
 
   
 }

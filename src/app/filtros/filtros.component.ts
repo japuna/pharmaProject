@@ -13,20 +13,27 @@ export class FiltrosComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  applyFilter(filterValue: any){
-      console.log(filterValue.target.value)
+  clickEnNumero(event: any){
+    console.log(event);
   }
   
-  borrarfiltros(numero:string, e: any){
+  generarFiltros(columna:string, e: any){
     let filterValues={
-      "columna": numero,
+      "columna": columna,
       "valor": e.target.value
     };
+    console.log
     this.filtrosEscogido.emit(filterValues);
   }
   borrarTodo(){
     this.reset.emit();
+  };
+
+  hola(){
+    console.log("asdasd");
   }
+
+  
   
   
 

@@ -19,6 +19,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { OrdenesCompraComponent } from './ordenes-compra/ordenes-compra.component';
 import { ReactiveFormsModule} from '@angular/forms';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { FooterAllComponent } from './footer-all/footer-all.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     ProductosOrdenesComponent,
     FiltrosComponent,
     OrdenesCompraComponent,
+    FooterAllComponent,
   ],
   imports: [
     BrowserModule,
