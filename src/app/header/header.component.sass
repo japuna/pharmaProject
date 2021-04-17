@@ -1,0 +1,70 @@
+@import "../variables"
+
+header
+    width: 100%
+    height: auto 
+    display: flex
+    justify-content: space-between
+    align-items: center
+    flex-wrap: wrap
+    h1
+        @include titulos
+        text-align: center 
+
+    .conectado
+        display: flex
+        align-items: center
+        justify-content: flex-end
+        margin-right: 2%
+
+    .nombre
+        padding-left: 12px
+        p
+            margin:0
+            padding:0
+            font-size: 0.8rem 
+
+.encabezado
+    margin-top: 1%
+    padding:0
+    background-color: $color1 
+    padding: 3px 0
+    color: white
+    h2
+        text-align: left
+        padding-left: 3%
+        font-weight: 600
+        font-size: 1.2rem
+
+@media only screen and (min-width: 800px) 
+    .conectado img 
+        width: 20%
+        
+
+    .imagenlogo
+        width: 15%
+    .nombre
+        display: block        
+    
+
+
+@media only screen and (max-width: 799px)  
+    .conectado
+        width: 95%
+        img 
+            width: 15% 
+    .imagenLogo
+        width: 50% 
+           
+
+    header h1
+        font-size: 1.3rem
+        margin-buttom: 0  
+        width:50%
+
+    .nombre
+        display: none                   
+            
+
+        
+        
