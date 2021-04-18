@@ -20,6 +20,7 @@ import { OrdenesCompraComponent } from './ordenes-compra/ordenes-compra.componen
 import { ReactiveFormsModule} from '@angular/forms';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { FooterAllComponent } from './footer-all/footer-all.component';
+import { ManejoCertificadosComponent } from './manejo-certificados/manejo-certificados.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { FooterAllComponent } from './footer-all/footer-all.component';
     FiltrosComponent,
     OrdenesCompraComponent,
     FooterAllComponent,
+    ManejoCertificadosComponent,
   ],
   imports: [
     BrowserModule,
