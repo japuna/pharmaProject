@@ -1,2 +1,12 @@
-<div *ngIf="elementos.estado==='Completo'">Es mayor de edad</div>
+<div *ngIf="elementos.estado==='Incompleto'; then completo; else incompleto"></div>
 
+<ng-template #completo>
+    <div>
+      Welcome back, friend.
+    </div>
+  </ng-template>
+  <ng-template #incompleto>
+    <div>
+      Please friend, login.
+    </div>
+  </ng-template>
