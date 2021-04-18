@@ -174,7 +174,7 @@ export class OrdenesCompraComponent implements OnInit {
   }
 
   abrirObjeto= (event:any)=>{
-    alert(event);
+    
   }
   
   

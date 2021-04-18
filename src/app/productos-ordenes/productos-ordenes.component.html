@@ -18,13 +18,21 @@
         <!-- Weight Column -->
         <ng-container matColumnDef="estado">
           <th mat-header-cell *matHeaderCellDef mat-sort-header class= "header2"> ESTADO </th>
-          <td mat-cell *matCellDef="let element"> {{element.estado}} </td>
+          <td mat-cell *matCellDef="let element">
+           <div *ngIf= "rol=='Administrador'"> 
+           <select (change)= "cambiarEstado($event)" id= {{element.lote}} class = "estadoSeleccionar" value = {{element.estado}}>
+              <option>Completo</option>
+              <option>Incompleto</option>
+            </select>
+            </div>
+            <div *ngIf= "rol!='Administrador'">{{element.estado}} </div>
+            </td>
         </ng-container>
       
         <!-- Symbol Column -->
-        <ng-container matColumnDef="archivos">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header class= "header2"> certificados </th>
-          <td mat-cell *matCellDef="let element" id=""> <app-manejo-certificados [elementos]=element></app-manejo-certificados> </td>
+        <ng-container matColumnDef="archivos" style="width:20%">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header class= "header2"> CERTIFICADOS</th>
+          <td mat-cell *matCellDef="let element" style="width:33%"> <app-manejo-certificados [elementos]=element (enviarEstado) ="enviarEstado($event)" ></app-manejo-certificados></td>
         </ng-container>
     
       
@@ -35,4 +43,6 @@
     </div>
     <app-footer-all></app-footer-all>
 
-  
+    <ng-template #OtroFiltro>
+      
+    </ng-template>  

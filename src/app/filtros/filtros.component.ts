@@ -22,16 +22,12 @@ export class FiltrosComponent implements OnInit {
       "columna": columna,
       "valor": e.target.value
     };
-    console.log
     this.filtrosEscogido.emit(filterValues);
   }
   borrarTodo(){
     this.reset.emit();
   };
 
-  hola(){
-    console.log("asdasd");
-  }
 
   
   

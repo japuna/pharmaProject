@@ -1,12 +1,26 @@
-<div *ngIf="elementos.estado==='Incompleto'; then completo; else incompleto"></div>
+<div>
+  <div>{{elementos.archivos}}</div>
+  <ul class = "listaArchivos">
+    <li *ngFor = "let archivo of archivos">{{archivo}}</li>
+  </ul>
+</div>
+<div *ngIf="elementos.estado==='Completo'; then completo; else incompleto"></div>
 
 <ng-template #completo>
-    <div>
-      Welcome back, friend.
-    </div>
+    <div *ngIf = "archivos.length == 0" >
+      <h4>Sin Certificados</h4>
+      </div>
   </ng-template>
   <ng-template #incompleto>
-    <div>
-      Please friend, login.
+    <div [id] = "'Elemento' + elementos.lote">
+      <ul class = "NuevosArchivos">
+        <li *ngFor = "let archivo of nuevosArchivos">{{archivo.name}}</li>
+      </ul>
+      <div class = "gestionarArchivos">
+        <input  class = "subir" [id] = "'subir' + elementos.lote" style= "display:none" [name]="'subir' + elementos.lote" (change) = "subirArchivos($event)" type="file" multiple/>
+        <label [for] = "'subir' + elementos.lote" class= "botonMas" [id]= "'mas' + elementos.lote">+</label>
+        <button (click) = "botonTerminar($event)" class = "terminar">Terminar</button>
+      </div>  
+      
     </div>
   </ng-template>
