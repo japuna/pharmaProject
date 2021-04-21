@@ -21,6 +21,8 @@ import { ReactiveFormsModule} from '@angular/forms';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { FooterAllComponent } from './footer-all/footer-all.component';
 import { ManejoCertificadosComponent } from './manejo-certificados/manejo-certificados.component';
+import { RouterModule } from '@angular/router';
+import { RegistroComponent } from './registro/registro.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,7 @@ import { ManejoCertificadosComponent } from './manejo-certificados/manejo-certif
     OrdenesCompraComponent,
     FooterAllComponent,
     ManejoCertificadosComponent,
+    RegistroComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,6 +49,10 @@ import { ManejoCertificadosComponent } from './manejo-certificados/manejo-certif
     MatInputModule,
     ReactiveFormsModule,
     MatAutocompleteModule,
+    RouterModule.forRoot([
+        {path: 'ordenesCompra/producto', component: ProductosOrdenesComponent},
+        {path: 'ordenesCompra', component: OrdenesCompraComponent},
+    ]),
   ],
   providers: [],
   bootstrap: [AppComponent]

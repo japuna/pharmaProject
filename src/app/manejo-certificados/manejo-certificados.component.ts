@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges, SimpleChange, DoCheck} from '@angular/core';
 
 @Component({
   selector: 'app-manejo-certificados',
@@ -7,14 +7,17 @@ import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChange
 })
 
 
-export class ManejoCertificadosComponent implements OnInit, OnChanges {
+export class ManejoCertificadosComponent implements OnInit, OnChanges, DoCheck {
   @Input() elementos: any;
   
   @Output() enviarEstado = new EventEmitter();
   archivos = []; 
   nuevosArchivos:any = [];
   
+  public ngDoCheck(): void {
+    this.setValue();
 
+  }
 
   constructor() { 
   }
@@ -22,7 +25,8 @@ export class ManejoCertificadosComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     this.setValue();
   }
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges() {
+    console.log("sdsd");
     this.setValue();
   }
 
@@ -49,6 +53,7 @@ export class ManejoCertificadosComponent implements OnInit, OnChanges {
       nuevos: this.nuevosArchivos
     }
     this.enviarEstado.emit(objeto);
+    this.nuevosArchivos= []
   }
 
 }

@@ -5,14 +5,14 @@ import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 import { mixinInitialized } from '@angular/material/core';
 
-export interface PeriodicElement {
+export interface Productos {
   lote: number;
   producto: string;
   estado: string;
   archivos: any;
 }
 
-let ELEMENT_DATA: PeriodicElement[] = [
+let ELEMENT_DATA: Productos[] = [
   {lote: 123234234, producto: 'Acido cítrico', estado:"Completo", archivos: "colombia.pdf,otros.pdf" },
   {lote: 12233234, producto: 'Gasa', estado:"Incompleto", archivos: "" },
   {lote: 4578977, producto: 'Producto3', estado:"Completo", archivos: "" },

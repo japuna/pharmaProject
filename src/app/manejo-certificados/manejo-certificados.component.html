@@ -1,5 +1,4 @@
 <div>
-  <div>{{elementos.archivos}}</div>
   <ul class = "listaArchivos">
     <li *ngFor = "let archivo of archivos">{{archivo}}</li>
   </ul>
@@ -8,12 +7,12 @@
 
 <ng-template #completo>
     <div *ngIf = "archivos.length == 0" >
-      <h4>Sin Certificados</h4>
+      <h4 >Sin Certificados</h4>
       </div>
   </ng-template>
   <ng-template #incompleto>
     <div [id] = "'Elemento' + elementos.lote">
-      <ul class = "NuevosArchivos">
+      <ul>
         <li *ngFor = "let archivo of nuevosArchivos">{{archivo.name}}</li>
       </ul>
       <div class = "gestionarArchivos">

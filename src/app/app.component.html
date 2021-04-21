@@ -1,4 +1,12 @@
 <div class= "body-content">
-    <!--<app-ordenes-compra></app-ordenes-compra>-->
-    <app-productos-ordenes></app-productos-ordenes>
+    <div *ngIf= "!conectado && !registro">
+        <my-login (hideShow)="ocultarPlugin($event)" (registrando)="registrando($event)" ></my-login>
+    </div>
+    <div *ngIf= "!conectado && registro"><app-registro (registrando)="registrando($event)"></app-registro></div>
+    <div *ngIf= "conectado" id="contenido">
+        <app-header></app-header>
+        <router-outlet></router-outlet>
+        <app-footer-all></app-footer-all>
+    </div>
+    
 </div>
