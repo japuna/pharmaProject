@@ -14,12 +14,12 @@ export interface Productos {
 
 let ELEMENT_DATA: Productos[] = [
   {lote: 123234234, producto: 'Acido cítrico', estado:"Completo", archivos: "colombia.pdf,otros.pdf" },
-  {lote: 12233234, producto: 'Gasa', estado:"Incompleto", archivos: "" },
+  {lote: 12233234, producto: 'Gasa', estado:"Pendiente", archivos: "" },
   {lote: 4578977, producto: 'Producto3', estado:"Completo", archivos: "" },
-  {lote: 45232378977, producto: 'Medicina', estado:"Incompleto", archivos: "otroarchivo.pdf" },
-  {lote: 1435555544, producto: 'Pastillas', estado:"Incompleto", archivos: "" },
-  {lote: 56766787878, producto: 'Otras Cosas raras', estado:"Incompleto", archivos: "" },
-  {lote: 234234343, producto: 'Otras Cosas raras2', estado:"Incompleto", archivos: "" }
+  {lote: 45232378977, producto: 'Medicina', estado:"Pendiente", archivos: "otroarchivo.pdf" },
+  {lote: 1435555544, producto: 'Pastillas', estado:"Pendiente", archivos: "" },
+  {lote: 56766787878, producto: 'Otras Cosas raras', estado:"Pendiente", archivos: "" },
+  {lote: 234234343, producto: 'Otras Cosas raras2', estado:"Pendiente", archivos: "" }
 ];
 
 
@@ -75,7 +75,6 @@ export class ProductosOrdenesComponent implements OnInit {
             }
           }
           data[i].archivos += caracter; 
-          console.log(data[i].archivos);
         }
     }
     

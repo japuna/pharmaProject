@@ -1,7 +1,11 @@
+
 <div class= "return" routerLink="../"><svg  height="30" width="30">
   <polygon  id = "triangulo" points="10,20 30,30 30, 10" /> 
 </svg>
 <h4 id = "ordenes"> Órdenes Médicas</h4>
+</div>
+<div class="otrosInput item4">
+  <input name= "nit" id= "nit" type="number" placeholder="NIT"> <!--(keyup)="generarFiltros('nit',$event)"/>-->
 </div>
 <div class="mat-elevation-z8 contenedorTabla">
     <table mat-table [dataSource]="dataSource"  matSort class = "tablaCompra">
@@ -26,7 +30,7 @@
            <div *ngIf= "rol=='Administrador'"> 
            <select (change)= "cambiarEstado($event)" id= {{element.lote}} class = "estadoSeleccionar" value = {{element.estado}}>
               <option>Completo</option>
-              <option>Incompleto</option>
+              <option>Pendiente</option>
             </select>
             </div>
             <div *ngIf= "rol!='Administrador'">{{element.estado}} </div>

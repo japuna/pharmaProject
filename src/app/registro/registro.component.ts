@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import{HttpClient} from '@angular/common/http'
 
 @Component({
   selector: 'app-registro',
@@ -8,14 +9,12 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class RegistroComponent implements OnInit {
   @Output() registrando = new EventEmitter();
   model = {
-    nombre: "",
-    user: "",
+    name: "",
+    email: "",
     password: "",
-    repeatPassword: "",
-    cargo: "",
-
+    password_confirmation: ""
   };
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
   }
@@ -23,7 +22,11 @@ export class RegistroComponent implements OnInit {
   registrarse (formVal : any){
     console.log(formVal);
     this.registrando.emit(false);
-
+    this.http.post<any>("https://6d184d736a3f.ngrok.io/api/register", formVal)
+    .subscribe((result:any)=>{
+      console.warn("result",result)
+    })
+    
   }
 
 }

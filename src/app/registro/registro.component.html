@@ -5,28 +5,23 @@
         <form  #registerForm = "ngForm"  (ngSubmit) = "registrarse(registerForm.value)">
         <div class = form-group>
            <input placeholder = "Nombre" style = "margin-bottom: 5%" name = "nombre" 
-                type= "text" class= "mailDisplay" id="nombre" [(ngModel)] = "model.nombre"
+                type= "text" class= "mailDisplay" id="nombre" [(ngModel)] = "model.name"
            />           
        </div>
        <div class = form-group>
-        <input placeholder = "Usuario" style = "margin-bottom: 5%" name = "user" 
-             type= "text" class= "mailDisplay" id="user" [(ngModel)] = "model.user"
+        <input placeholder = "Correo electrónico" style = "margin-bottom: 5%" name = "email" 
+             type= "email" class= "mailDisplay" id="email" [(ngModel)] = "model.email"
         value ="" />           
         </div>
 
         <div class = form-group>
-            <input placeholder = "Contraseña" style = "margin-bottom: 5%" name = "password2" 
-                 type= "password2" class= "mailDisplay" id="password2" [(ngModel)] = "model.password"
+            <input placeholder = "Contraseña" style = "margin-bottom: 5%" name = "password" 
+                 type= "password" class= "mailDisplay" id="password" [(ngModel)] = "model.password"
                  value =""/>           
         </div>
         <div class = form-group>
-            <input placeholder = "Repite la Contraseña" style = "margin-bottom: 5%" name = "repeatPassword" 
-                 type= "password" class= "mailDisplay" id="repeatPassword" [(ngModel)] = "model.repeatPassword"
-                 value ="" />           
-        </div>
-        <div class = form-group>
-            <input placeholder = "Cargo" style = "margin-bottom: 5%" name = "cargo" 
-                 type= "text" class= "mailDisplay" id="cargo" [(ngModel)] = "model.cargo"
+            <input placeholder = "Repite la Contraseña" style = "margin-bottom: 5%" name = "password_confirmation" 
+                 type= "password" class= "mailDisplay" id="password_confirmation" [(ngModel)] = "model.password_confirmation"
                  value ="" />           
         </div>
         <button type= "submit" class = "botonSubmit" >Registrarse</button>
@@ -36,9 +31,3 @@
 </div>     
 
    
-<!--nombre: "", 
-    user: "",
-    password: "",
-    repeatPassword: "",
-    cargo: "",
-    -->
