@@ -18,7 +18,6 @@ export class AppComponent {
   constructor(private router: Router) {
     router.events.subscribe((val) => {
       if(router.url==="/"){
-        console.log("yeah");
         this.conectado = false;
       } 
     });

@@ -1,23 +1,12 @@
 @import "../variables"
 @import "../mixins"
-
-@mixin inputsStyled
-    width: 90%
-    padding: 2% 4%
-    background-color: $colorGris
-    font-size: 1rem
-    border-radius: 10px
-    border: 2px solid #aaa
-    color: $colorTitulo    
+@import "../_tabla"
 
 .return
     display: flex
     align-items: center
     margin-left: 4%
     cursor: pointer
-
-
-
     
     #ordenes 
         padding-left: 1%
@@ -27,30 +16,22 @@
         fill: $color2
 
 .return:hover
-    
-
     #ordenes 
         font-size: 1.2rem  
 
     #triangulo
         fill: $colorContraste               
-
-.contenedorTabla
-    margin: 2% 4%
-    width: 92%
-    overflow-y: scroll
     
-
-.tablaCompra
-    width: 100%
-    font-family: "Open Sans"
-    
-.mat-header-row
-    background-color: #d3d3d3
 
 .header2
     font-size: 1rem
-    font-weight: 600
+    font-weight: bold
+    .mat-sort-header-content
+        position: absolute
+        left: 50%
+        top: 50%
+        transform: translate(-50%)
+        
 
 .enlace
     font-size: 1.2rem
@@ -58,9 +39,18 @@
 
 
 .estadoSeleccionar
+    @include inputsStyled          
+
+.filtroContainer
+    margin: 2% 4% 1% 4%  
+    width: 92% 
+
+#filtros
     @include inputsStyled    
-
-
+    margin-left: 0
+    width: 95%
+    font-size: 1.2rem
+    padding: 2.5%    
 
 
 

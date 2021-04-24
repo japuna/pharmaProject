@@ -26,7 +26,6 @@ export class ManejoCertificadosComponent implements OnInit, OnChanges, DoCheck {
     this.setValue();
   }
   ngOnChanges() {
-    console.log("sdsd");
     this.setValue();
   }
 
@@ -37,6 +36,8 @@ export class ManejoCertificadosComponent implements OnInit, OnChanges, DoCheck {
 
   subirArchivos(event: any){
     let files = event.target.files;
+    const div = window.document.getElementById("nuevosLista")!;
+    div.style.borderTop = "1px solid #333";
     if(files.length==0){
       this.nuevosArchivos.push(files); 
     }else if(files.length>0){
@@ -44,6 +45,7 @@ export class ManejoCertificadosComponent implements OnInit, OnChanges, DoCheck {
         this.nuevosArchivos.push(files[i])
       }
     }
+    console.log(this.nuevosArchivos);
     
   }
 
@@ -54,6 +56,10 @@ export class ManejoCertificadosComponent implements OnInit, OnChanges, DoCheck {
     }
     this.enviarEstado.emit(objeto);
     this.nuevosArchivos= []
+  }
+
+  borrarArchivos(e: any, posicion: number){
+    this.nuevosArchivos.splice( posicion, 1 );
   }
 
 }

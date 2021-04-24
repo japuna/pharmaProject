@@ -1,6 +1,9 @@
 <div>
   <ul class = "listaArchivos">
-    <li *ngFor = "let archivo of archivos">{{archivo}}</li>
+    <li *ngFor = "let archivo of archivos; let i = index">
+      <span>{{archivo}}</span>
+      <button class = "Cerrar" (click)= "borrarArchivos($event, i)"><mat-icon class= "icono" >close</mat-icon></button>
+    </li>
   </ul>
 </div>
 <div *ngIf="elementos.estado==='Completo'; then completo; else incompleto"></div>
@@ -12,12 +15,15 @@
   </ng-template>
   <ng-template #incompleto>
     <div [id] = "'Elemento' + elementos.lote">
-      <ul>
-        <li *ngFor = "let archivo of nuevosArchivos">{{archivo.name}}</li>
+      <ul id = "nuevosLista">
+        <li *ngFor = "let archivo of nuevosArchivos; let i = index">
+          {{archivo.name}}
+          <button class = "Cerrar" (click)= "borrarArchivos($event, i)"><mat-icon class= "icono" >close</mat-icon></button>
+        </li>
       </ul>
       <div class = "gestionarArchivos">
-        <input  class = "subir" [id] = "'subir' + elementos.lote" style= "display:none" [name]="'subir' + elementos.lote" (change) = "subirArchivos($event)" type="file" multiple/>
         <label [for] = "'subir' + elementos.lote" class= "botonMas" [id]= "'mas' + elementos.lote">+</label>
+        <input  class = "subir" [id] = "'subir' + elementos.lote" style= "display:none" [name]="'subir' + elementos.lote" (change) = "subirArchivos($event)" type="file" multiple/>
         <button (click) = "botonTerminar($event)" class = "terminar">Terminar</button>
       </div>  
       

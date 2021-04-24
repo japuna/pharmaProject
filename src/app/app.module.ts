@@ -24,6 +24,7 @@ import { FooterAllComponent } from './footer-all/footer-all.component';
 import { ManejoCertificadosComponent } from './manejo-certificados/manejo-certificados.component';
 import { RouterModule } from '@angular/router';
 import { RegistroComponent } from './registro/registro.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { RegistroComponent } from './registro/registro.component';
     MatInputModule,
     ReactiveFormsModule,
     MatAutocompleteModule,
+    MatIconModule,
     HttpClientModule,
     RouterModule.forRoot([
         {path: 'ordenesCompra/producto', component: ProductosOrdenesComponent},
