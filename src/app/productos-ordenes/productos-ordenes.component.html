@@ -1,5 +1,5 @@
 
-<div class= "return" routerLink="../"><svg  height="30" width="30">
+<div class= "return" (click) = "volver()" routerLink="../"><svg  height="30" width="30">
   <polygon  id = "triangulo" points="10,20 30,30 30, 10" /> 
 </svg>
 <h4 id = "ordenes"> Órdenes Médicas</h4>
@@ -8,7 +8,7 @@
   <input name= "filtros" id= "filtros" type="text" placeholder="Busca por número de lote, producto o estado" (keyup)="applyFilter($event)"> 
 </div>
 <div class="mat-elevation-z8 contenedorTabla">
-    <table mat-table [dataSource]="dataSource"  matSort class = "tablaCompra">
+    <table mat-table [dataSource]="ProductosService.dataSource"  matSort class = "tablaCompra">
     
         
         <!-- Position Column -->
@@ -41,7 +41,7 @@
         <ng-container matColumnDef="archivos" style="width:34%;">
           <th mat-header-cell *matHeaderCellDef mat-sort-header 
           class=  "header2" ><span class= "th-center">CERTIFICADOS</span></th>
-          <td mat-cell *matCellDef="let element" style="width:40%;"> <app-manejo-certificados [elementos]=element (enviarEstado) ="enviarEstado($event)" ></app-manejo-certificados></td>
+          <td mat-cell *matCellDef="let element" style="width:40%;"> <app-manejo-certificados [elementos]=element ></app-manejo-certificados></td>
         </ng-container>
     
         <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>

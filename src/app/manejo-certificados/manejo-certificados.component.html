@@ -1,8 +1,8 @@
 <div>
   <ul class = "listaArchivos">
     <li *ngFor = "let archivo of archivos; let i = index">
-      <span>{{archivo}}</span>
-      <button class = "Cerrar" (click)= "borrarArchivos($event, i)"><mat-icon class= "icono" >close</mat-icon></button>
+      <span [id] = "'delete' + elementos.lote + i" >{{archivo}}</span>
+      <button class = "Cerrar" (click)= "borrarEnbasedeDatos($event, i)"><mat-icon class= "icono" >close</mat-icon></button>
     </li>
   </ul>
 </div>
@@ -15,7 +15,7 @@
   </ng-template>
   <ng-template #incompleto>
     <div [id] = "'Elemento' + elementos.lote">
-      <ul id = "nuevosLista">
+      <ul [id] = "'list' + elementos.lote" class = "nuevosLista">
         <li *ngFor = "let archivo of nuevosArchivos; let i = index">
           {{archivo.name}}
           <button class = "Cerrar" (click)= "borrarArchivos($event, i)"><mat-icon class= "icono" >close</mat-icon></button>

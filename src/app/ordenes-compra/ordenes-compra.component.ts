@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {AfterViewInit, ViewChild} from '@angular/core';
-import {MatSort} from '@angular/material/sort';
-import {MatTableDataSource} from '@angular/material/table';
-import {MatPaginator} from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { OrdenesCompraService } from '../services/ordenes-compra.service'
+import { HeaderTitleService } from '../services/header-title.service';
 
 
 export interface PeriodicElement {
@@ -14,11 +16,6 @@ export interface PeriodicElement {
   estado: string;
 }
 
-
-
-
-
-
 @Component({
   selector: 'app-ordenes-compra',
   templateUrl: './ordenes-compra.component.html',
@@ -26,73 +23,38 @@ export interface PeriodicElement {
 })
 export class OrdenesCompraComponent implements OnInit {
   displayedColumns: string[] = ['numero', 'nit', 'razonSocial', 'fecha', 'observaciones', 'estado', 'ruta'];
-  dataSource = new MatTableDataSource();
-  filterValues:{[index: string]:any} = {};
-  filterSelectObj: any[] = [];
 
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  constructor() { 
+  constructor(public OrdenesCompraService: OrdenesCompraService, public HeaderTitleService: HeaderTitleService) { 
  
   }
   ngAfterViewInit(){
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort; 
+    this.OrdenesCompraService.dataSource.paginator = this.paginator;
+    this.OrdenesCompraService.dataSource.sort = this.sort; 
   }
 
   ngOnInit(): void {
     this.getRemoteData();
-    this.dataSource.filterPredicate = this.createFilter();
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    this.OrdenesCompraService.dataSource.filterPredicate = this.createFilter();
+    this.OrdenesCompraService.dataSource.paginator = this.paginator;
+    this.OrdenesCompraService.dataSource.sort = this.sort;
   }
 
-  getFilterObject(fullObj:any, key:any) {
-    const uniqChk:any[] = [];
-    fullObj.filter((obj: any) => {
-      if (!uniqChk.includes(obj[key])) {
-        uniqChk.push(obj[key]);
-      }
-      return obj;
-    });
-    return uniqChk;
-  }
   getRemoteData() {
-  const ELEMENT_DATA: PeriodicElement[] = [
-    {numero: 123, nit: '1423243433-2', razonSocial:"Alegrias SAS", fecha: "02/23/20", 
-    observaciones: "Esto es un ejemplo", estado: "Completo" },
-    {numero: 13, nit: '222434333', razonSocial:"Hola SAS", fecha: "02/23/19", 
-    observaciones: "Another One", estado: "Pendiente" },
-    {numero: 33343, nit: '19232434333-1', razonSocial:"Comida SAS", fecha: "01/03/19", 
-    observaciones: "Look This", estado: "Completo" },
-    {numero: 4131, nit: '1232434333-5', razonSocial:"La Cna SAS", fecha: "12/02/19", 
-    observaciones: "Muchis", estado: "Completo" },
-    {numero: 8122, nit: '993434333-6', razonSocial:"ASSS SAS", fecha: "11/03/21", 
-    observaciones: "Otras compra", estado: "Pendiente" },
-    {numero: 33432, nit: '12234333-6', razonSocial:"Camila SAS", fecha: "3/12/20", 
-    observaciones: "Compra", estado: "Pendiente" }
-  ];
-
-  this.dataSource.data = ELEMENT_DATA;
-    this.filterSelectObj.filter((o) => {
-      o.options = this.getFilterObject(ELEMENT_DATA, o.columnProp);
-    });  
-}
+    this.OrdenesCompraService.getRemoteData();  
+  }
   
   filtros(objeto: any){
-    this.filterValues[objeto.columna] = objeto.valor.trim().toLowerCase()
-    this.dataSource.filter = JSON.stringify(this.filterValues)
+    this.OrdenesCompraService.filterValues[objeto.columna] = objeto.valor.trim().toLowerCase()
+    this.OrdenesCompraService.dataSource.filter = JSON.stringify(this.OrdenesCompraService.filterValues)
   }
 
   createFilter() {
-
     let filtroFecha = (fechaOrden:any, valorFiltro:any, columna:any)=>{
-        let fecha1 = (new Date(fechaOrden));
-        console.log(fecha1);
+    let fecha1 = (new Date(fechaOrden));
         let bandera = false;
         let fecha2 = (new Date(valorFiltro))
-        console.log(valorFiltro);
-        console.log(fecha2);
         if(columna=="fechaInicial"){
           if(fecha1>=fecha2){
             bandera = true;
@@ -163,18 +125,13 @@ export class OrdenesCompraComponent implements OnInit {
   }
 
 
-  // Reset table filters
+  //Borrar todos los filtros
   resetFilters() {
-  
-    this.filterValues = {}
-    this.filterSelectObj.forEach((value, key) => {
-      value.modelValue = "";
-    })
-    this.dataSource.filter = "";
+    this.OrdenesCompraService.resetFilters();
   }
 
-  abrirObjeto= (event:any)=>{
-    
+  abrirObjeto= (event:any, numero: number)=>{
+    this.HeaderTitleService.set_titulo("ORDEN DE COMPRA #" + numero);
   }
   
   
